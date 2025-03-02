@@ -2,11 +2,10 @@
 
 import * as React from "react"
 import Image from "next/image"
-import { ChevronLeft } from "lucide-react"
-import Link from "next/link"
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/ui/tabs"
 import { Card, CardContent } from "@/app/ui/card"
-import Footer from "../footer";
+
 
 const meriendas = [
   { id: 1, name: "Rogel", description: "Delicioso croissant horneado con almendras caramelizadas y un toque de vainilla.", image: "/rogel.jpg" },

@@ -2,11 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Coffee } from "lucide-react";
-import Header from "./header";
-import Footer from "./footer";
-import GaleriaPage from "./galeria/page";
-import Nosotros from "./Ussection";
 
 export default function Landing() {
 

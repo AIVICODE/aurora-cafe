@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Instagram, Twitter, Coffee, CoffeeIcon } from "lucide-react";
+import {Instagram} from "lucide-react";
 import Image from "next/image";
 
 export default function Footer() {

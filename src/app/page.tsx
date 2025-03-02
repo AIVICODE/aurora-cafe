@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { Coffee } from "lucide-react";
+
 import Header from "./header";
 import Footer from "./footer";
 import GaleriaPage from "./galeria/page";
