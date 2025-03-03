@@ -61,9 +61,6 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-            <h3 className="text-xl font-serif mb-4 text-[#a67f2b]">Horario</h3>
-            <p className="mb-1 text-sm text-[#a67f2b]">Lun - Vie: 7:00 - 20:00</p>
-            <p className="text-sm text-[#a67f2b]">Sáb - Dom: 8:00 - 22:00</p>
           </div>
 
           {/* Columna 4: Logo */}

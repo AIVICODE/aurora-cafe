@@ -39,35 +39,43 @@ export default function Nosotros() {
           </div>
 
           {/* Imágenes */}
-          <div className="grid grid-cols-2 gap-4">
-            <Image
-              src="/negro.jpg"
-              alt="Barista preparando café"
-              width={400}
-              height={300}
-              className="object-cover rounded-lg shadow-lg border border-[#a67f2b]/20"
-            />
-            <Image
-              src="/lluvia.jpg"
-              alt="Equipo de Aurora Café"
-              width={400}
-              height={300}
-              className="object-cover rounded-lg shadow-lg border border-[#a67f2b]/20"
-            />
-            <Image
-              src="/chicate.jpg"
-              alt="Taza de café"
-              width={400}
-              height={300}
-              className="object-cover rounded-lg shadow-lg border border-[#a67f2b]/20"
-            />
-            <Image
-              src="/auropergola.jpg"
-              alt="Interior de Aurora Café"
-              width={400}
-              height={300}
-              className="object-cover rounded-lg shadow-lg border border-[#a67f2b]/20"
-            />
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
+            <div className="w-full h-[200px] md:h-[300px] overflow-hidden rounded-lg shadow-lg border border-[#a67f2b]/20">
+              <Image
+                src="/negro.jpg"
+                alt="Barista preparando café"
+                width={400}
+                height={300}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-full h-[200px] md:h-[300px] overflow-hidden rounded-lg shadow-lg border border-[#a67f2b]/20">
+              <Image
+                src="/lluvia.jpg"
+                alt="Equipo de Aurora Café"
+                width={400}
+                height={300}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-full h-[200px] md:h-[300px] overflow-hidden rounded-lg shadow-lg border border-[#a67f2b]/20">
+              <Image
+                src="/chicate.jpg"
+                alt="Taza de café"
+                width={400}
+                height={300}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-full h-[200px] md:h-[300px] overflow-hidden rounded-lg shadow-lg border border-[#a67f2b]/20 relative">
+              <Image
+                src="/auropergola.jpg"
+                alt="Interior de Aurora Café"
+                width={400}
+                height={400}
+                className="object-cover w-full h-full"
+              />
+            </div>
           </div>
         </div>
       </div>
