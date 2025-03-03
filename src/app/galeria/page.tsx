@@ -25,7 +25,7 @@ export default function GaleriaPage() {
   const [activeTab, setActiveTab] = React.useState("meriendas")
 
   return (
-    <div className="bg-black text-white flex flex-col">
+    <div className="bg-black text-white flex flex-col" id="GaleriaPage">
       <main className="flex-1 relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: "url('/galerybackground.png')" }}>
         <div className="container mx-auto px-4 py-20">
 

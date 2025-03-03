@@ -18,9 +18,7 @@ export default function Footer() {
             <p className="mb-2 text-sm text-[#a67f2b]">La Paloma, Rocha, Uruguay</p>
             <p className="mb-2 text-sm text-[#a67f2b]">Tel: +598 91 775 992</p>
             <p className="hover:text-white transition-colors">
-              <a href="mailto:info@auroracafe.com" className="underline text-sm text-[#a67f2b] hover:text-white">
-                info@auroracafe.com
-              </a>
+ 
             </p>
           </div>
 

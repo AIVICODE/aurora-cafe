@@ -18,19 +18,19 @@ export default function Header() {
       {/* Navigation */}
       <nav className="flex gap-4">
         <Link
-          href="/"
+          href="#home"
           className="px-6 py-2 rounded-full bg-white text-black border border-amber-200 font-medium uppercase tracking-wider text-sm hover:bg-amber-100 transition-colors"
         >
           Home
         </Link>
         <Link
-          href="/nosotros"
+          href="#nosotros"
           className="px-6 py-2 rounded-full bg-transparent text-white border border-white font-medium uppercase tracking-wider text-sm hover:bg-white/10 transition-colors"
         >
           Nosotros
         </Link>
         <Link
-          href="#"
+          href="#GaleriaPage"
           className="px-6 py-2 rounded-full bg-transparent text-white border border-white font-medium uppercase tracking-wider text-sm hover:bg-white/10 transition-colors"
         >
           Menú
