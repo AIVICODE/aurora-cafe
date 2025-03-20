@@ -47,10 +47,6 @@ export default function GaleriaPage() {
     setCart((prevCart) => prevCart.filter((item) => !(item.id === id && item.type === type)));
   };
 
-  const scrollToPedido = () => {
-    pedidoRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const sendToWhatsApp = () => {
     if (cart.length === 0) return alert("Tu carrito está vacío");
     if (!location) return alert("Seleccioná tu ubicación en el mapa antes de enviar el pedido!");

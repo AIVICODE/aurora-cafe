@@ -1,7 +1,6 @@
 
 import Header from "./header";
 import Footer from "./footer";
-import GaleriaPage from "./galeria/page";
 import Nosotros from "./Ussection";
 import Landing from "./home"
 import ReviewsSection from "./review";
