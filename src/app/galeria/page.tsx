@@ -1,5 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
+
 import Image from "next/image";
 import Header from "../header";
 import Footer from "../footer";
@@ -15,7 +17,6 @@ const MapComponent = dynamic(() => import("../../components/MapComponent"), { ss
 export default function GaleriaPage() {
 
   const products = useProductStock();
-  const [activeTab, setActiveTab] = React.useState("meriendas");
   const [cart, setCart] = React.useState<
     { id: number; name: string; description: string; image: string; quantity: number; type: string }[]
   >([]);
