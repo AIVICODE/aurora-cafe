@@ -1,13 +1,14 @@
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { LeafletMouseEvent } from "leaflet"; // 🔥 Importamos el tipo correcto
 
 // ✅ Ícono personalizado usando tu logo
 const localIcon = new L.Icon({
-  iconUrl: "/logo.svg", // Tu logo dentro de /public
-  iconSize: [50, 50], // Ajusta el tamaño según cómo quieras que se vea
-  iconAnchor: [25, 50], // El punto exacto que 'ancla' el ícono (centro abajo)
-  popupAnchor: [0, -50], // Dónde aparece el popup relativo al ícono
+  iconUrl: "/logo.svg",
+  iconSize: [50, 50],
+  iconAnchor: [25, 50],
+  popupAnchor: [0, -50],
 });
 
 L.Icon.Default.mergeOptions({
@@ -22,7 +23,8 @@ const localCoords = {
   lng: -54.156344058603004,
 };
 
-function MapClickHandler({ onClick }: { onClick: (e: any) => void }) {
+// 🔥 Tipamos correctamente
+function MapClickHandler({ onClick }: { onClick: (e: LeafletMouseEvent) => void }) {
   useMapEvents({
     click: onClick,
   });
@@ -64,7 +66,9 @@ export default function MapComponent({
         )}
 
         <MapClickHandler
-          onClick={(e) => setLocation({ lat: e.latlng.lat, lng: e.latlng.lng })}
+          onClick={(e: LeafletMouseEvent) =>
+            setLocation({ lat: e.latlng.lat, lng: e.latlng.lng })
+          }
         />
       </MapContainer>
     </div>
