@@ -1,18 +1,20 @@
 "use client";
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Header from "../header";
 import Footer from "../footer";
 import dynamic from "next/dynamic";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/ui/tabs";
 import { Card, CardContent } from "@/app/ui/card";
 import PrimaryButton from "../ui/button";
-import { meriendas, cafes } from "../data/productos";
+import useProductStock from "./product";
+
 
 const MapComponent = dynamic(() => import("../../components/MapComponent"), { ssr: false });
 
 export default function GaleriaPage() {
+
+  const products = useProductStock();
   const [activeTab, setActiveTab] = React.useState("meriendas");
   const [cart, setCart] = React.useState<
     { id: number; name: string; description: string; image: string; quantity: number; type: string }[]
@@ -55,79 +57,128 @@ export default function GaleriaPage() {
       .map((item, index) => `${index + 1}. ${item.name} x${item.quantity}`)
       .join("\n")}\n\nComentario del cliente:\n${comment || "Sin comentarios"}\n\nMétodo de pago: ${paymentMethod}\n\nUbicación: https://www.google.com/maps?q=${location.lat},${location.lng}\n\n¡Gracias!`;
 
-    const whatsappURL = `https://api.whatsapp.com/send?phone=59898916370&text=${encodeURIComponent(message)}`;
+    const whatsappURL = `https://api.whatsapp.com/send?phone=59891775992&text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
+
+
 
   return (
     <div className="bg-black text-white flex flex-col min-h-screen">
       <Header />
-
-      <main className="flex-1 relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: "url('/galerybackground.png')" }}>
-        <div className="container mx-auto px-4 pt-40 py-10">
-
-          {/* Tabs */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
-              <TabsTrigger
-                value="meriendas"
-                onClick={() => setActiveTab("meriendas")}
-                className={`flex items-center justify-center min-w-[110px] px-3 py-2 sm:px-6 sm:py-3 text-sm sm:text-lg font-medium rounded-full transition-all duration-300 ease-in-out
-                ${activeTab === "meriendas" ? "bg-amber-500 text-black shadow-lg scale-105" : "bg-white/10 text-white hover:bg-amber-600/20 hover:text-amber-400"}`}
-              >
-                <Image src="/cookieicon.svg" alt="Meriendas" width={20} height={20} className={`inline-block mr-2 ${activeTab === "meriendas" ? "filter invert" : ""}`} />
-                Meriendas
-              </TabsTrigger>
-
-              <TabsTrigger
-                value="cafes"
-                onClick={() => setActiveTab("cafes")}
-                className={`flex items-center justify-center min-w-[110px] px-3 py-2 sm:px-6 sm:py-3 text-sm sm:text-lg font-medium rounded-full transition-all duration-300 ease-in-out
-                ${activeTab === "cafes" ? "bg-amber-500 text-black shadow-lg scale-105" : "bg-white/10 text-white hover:bg-amber-600/20 hover:text-amber-400"}`}
-              >
-                <Image src="/cafeicon.svg" alt="Cafés" width={20} height={20} className={`inline-block mr-2 ${activeTab === "cafes" ? "filter invert" : ""}`} />
-                Cafés
-              </TabsTrigger>
-            </TabsList>
-
-            {/* Meriendas Content */}
-            <TabsContent value="meriendas">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {meriendas.map((item) => (
-                  <Card key={`merienda-${item.id}`} className="bg-black border-b border-[#1a1a1a] overflow-hidden hover:border-amber-700 transition-colors shadow-lg">
+      <main className="flex-1 relative overflow-hidden bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/galerybackground.webp')" }}>
+      <div className="container mx-auto px-4 pt-40 py-10">
+  
+          {/* Meriendas */}
+          <div className="text-center mb-6">
+            <Image src="/cookieicon.svg" alt="Meriendas Icon" width={40} height={40} className="mx-auto mb-2" />
+          </div>
+          <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-custom">
+            {products
+              .filter((item) => item.type === "merienda" && item.stock)
+              .map((item) => {
+                const cartItem = cart.find((i) => i.id === item.id && i.type === "merienda");
+  
+                return (
+                  <Card key={`merienda-${item.id}`} className="min-w-[250px] bg-black border-b border-[#1a1a1a] overflow-hidden hover:border-amber-700 transition-colors shadow-lg flex-shrink-0">
                     <CardContent className="p-0 relative">
                       <div className="relative h-64 w-full overflow-hidden">
                         <Image src={item.image} alt={item.name} fill className="object-cover hover:scale-105 transition-transform duration-300" />
                       </div>
                       <div className="p-6 bg-black/40 backdrop-blur-[1px] absolute bottom-0 w-full text-center z-10">
                         <h3 className="text-xl font-serif mb-2 text-white">{item.name}</h3>
-                        <PrimaryButton text="Agregar al carrito" onClick={() => addToCart(item, "merienda")} extraClasses="mt-2" />
+  
+                        {cartItem ? (
+                          <div className="flex flex-col items-center space-y-2">
+                            <div className="flex gap-2 items-center">
+                              <button
+                                onClick={() => updateQuantity(item.id, "merienda", cartItem.quantity - 1)}
+                                className="bg-white text-black px-2 rounded-full"
+                                disabled={cartItem.quantity <= 1}
+                              >
+                                -
+                              </button>
+                              <span>{cartItem.quantity}</span>
+                              <button
+                                onClick={() => updateQuantity(item.id, "merienda", cartItem.quantity + 1)}
+                                className="bg-white text-black px-2 rounded-full"
+                              >
+                                +
+                              </button>
+                            </div>
+                            <button
+                              onClick={() => removeFromCart(item.id, "merienda")}
+                              className="text-red-400 text-sm hover:underline"
+                            >
+                              Eliminar
+                            </button>
+                          </div>
+                        ) : (
+                          <PrimaryButton text="Agregar al carrito" onClick={() => addToCart(item, "merienda")} extraClasses="mt-2" />
+                        )}
                       </div>
                     </CardContent>
                   </Card>
-                ))}
-              </div>
-            </TabsContent>
-
-            {/* Cafés Content */}
-            <TabsContent value="cafes">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {cafes.map((item) => (
-                  <Card key={`cafe-${item.id}`} className="bg-black border-b border-[#1a1a1a] overflow-hidden hover:border-amber-700 transition-colors shadow-lg">
+                );
+              })}
+          </div>
+  
+          {/* Cafés */}
+          <div className="text-center mt-10 mb-6">
+            <Image src="/cafeicon.svg" alt="Cafés Icon" width={40} height={40} className="mx-auto mb-2" />
+          </div>
+          <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-custom">
+            {products
+              .filter((item) => item.type === "cafe" && item.stock)
+              .map((item) => {
+                const cartItem = cart.find((i) => i.id === item.id && i.type === "cafe");
+  
+                return (
+                  <Card key={`cafe-${item.id}`} className="min-w-[250px] bg-black border-b border-[#1a1a1a] overflow-hidden hover:border-amber-700 transition-colors shadow-lg flex-shrink-0">
                     <CardContent className="p-0 relative">
                       <div className="relative h-64 w-full overflow-hidden">
                         <Image src={item.image} alt={item.name} fill className="object-cover hover:scale-105 transition-transform duration-300" />
                       </div>
                       <div className="p-6 bg-black/40 backdrop-blur-[1px] absolute bottom-0 w-full text-center z-10">
                         <h3 className="text-xl font-serif mb-2 text-white">{item.name}</h3>
-                        <PrimaryButton text="Agregar al carrito" onClick={() => addToCart(item, "cafe")} extraClasses="mt-2" />
+  
+                        {cartItem ? (
+                          <div className="flex flex-col items-center space-y-2">
+                            <div className="flex gap-2 items-center">
+                              <button
+                                onClick={() => updateQuantity(item.id, "cafe", cartItem.quantity - 1)}
+                                className="bg-white text-black px-2 rounded-full"
+                                disabled={cartItem.quantity <= 1}
+                              >
+                                -
+                              </button>
+                              <span>{cartItem.quantity}</span>
+                              <button
+                                onClick={() => updateQuantity(item.id, "cafe", cartItem.quantity + 1)}
+                                className="bg-white text-black px-2 rounded-full"
+                              >
+                                +
+                              </button>
+                            </div>
+                            <button
+                              onClick={() => removeFromCart(item.id, "cafe")}
+                              className="text-red-400 text-sm hover:underline"
+                            >
+                              Eliminar
+                            </button>
+                          </div>
+                        ) : (
+                          <PrimaryButton text="Agregar al carrito" onClick={() => addToCart(item, "cafe")} extraClasses="mt-2" />
+                        )}
                       </div>
                     </CardContent>
                   </Card>
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
+                );
+              })}
+          </div>
+
+    {/* Pedido + Mapa (sigue igual) */}
+
 
           {/* Pedido + Mapa */}
           <div ref={pedidoRef} className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">

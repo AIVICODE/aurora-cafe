@@ -8,7 +8,7 @@ export default function Nosotros() {
       id="nosotros"
       className="py-20 px-8 bg-cover bg-center scroll-margin-top-20"
       style={{
-        backgroundImage: "url('/bean.png')",
+        backgroundImage: "url('/bean.webp')",
         minHeight: "80vh",
       }}
     >
@@ -51,7 +51,7 @@ export default function Nosotros() {
             </div>
             <div className="w-full h-[200px] md:h-[300px] overflow-hidden rounded-lg shadow-lg border border-[#a67f2b]/20">
               <Image
-                src="/lluvia.jpg"
+                src="/lluvia.webp"
                 alt="Equipo de Aurora Café"
                 width={400}
                 height={300}
@@ -60,7 +60,7 @@ export default function Nosotros() {
             </div>
             <div className="w-full h-[200px] md:h-[300px] overflow-hidden rounded-lg shadow-lg border border-[#a67f2b]/20">
               <Image
-                src="/chicate.jpg"
+                src="/chicate.webp"
                 alt="Taza de café"
                 width={400}
                 height={300}

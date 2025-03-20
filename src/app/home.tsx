@@ -37,7 +37,7 @@ export default function Landing() {
   };
 
   return (
-    <div className="relative h-screen bg-[url('/mobile.png')] sm:bg-[url('/prueba.png')] bg-cover bg-center transition-all duration-500">
+    <div className="relative h-screen bg-[url('/mobile.webp')] sm:bg-[url('/prueba.png')] bg-cover bg-center transition-all duration-500">
       {/* Overlay para mejorar el contraste */}
       <div className="absolute inset-0 bg-black/10"></div>
 

@@ -21,7 +21,33 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  filter: sepia(0) saturate(120%) brightness(90%) contrast(105%);
+
+
 }
 html {
   scroll-behavior: smooth;
+}
+/* Scrollbar minimalista */
+.scrollbar-hide::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  height: 6px; /* altura en mobile */
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 193, 7, 0.5); /* ámbar semitransparente */
+  border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 193, 7, 0.8);
 }

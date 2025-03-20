@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {Instagram} from "lucide-react";
+import { Instagram } from "lucide-react";
 import Image from "next/image";
 
 export default function Footer() {
@@ -18,7 +18,7 @@ export default function Footer() {
             <p className="mb-2 text-sm text-[#a67f2b]">La Paloma, Rocha, Uruguay</p>
             <p className="mb-2 text-sm text-[#a67f2b]">Tel: +598 91 775 992</p>
             <p className="hover:text-white transition-colors">
- 
+
             </p>
           </div>
 
@@ -28,18 +28,25 @@ export default function Footer() {
               Enlaces rápidos
             </h3>
             <ul className="space-y-2">
-              {["Inicio", "Nosotros", "Galería", "Menú"].map((text, idx) => (
-                <li key={idx}>
-                  <Link
-                    href={`/${text.toLowerCase()}`}
-                    className="hover:text-white transition-colors text-sm text-[#a67f2b]"
-                  >
-                    {text}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link href="/#home" className="hover:text-white transition-colors text-sm text-[#a67f2b]">
+                  Inicio
+                </Link>
+              </li>
+              <li>
+                <Link href="/#nosotros" className="hover:text-white transition-colors text-sm text-[#a67f2b]">
+                  Nosotros
+                </Link>
+              </li>
+              <li>
+                <Link href="/galeria" className="hover:text-white transition-colors text-sm text-[#a67f2b]">
+                  Pedidos y menú
+                </Link>
+              </li>
             </ul>
           </div>
+
+
 
           {/* Columna 3: Redes sociales y horario */}
           <div className="text-center md:text-left">
@@ -70,7 +77,6 @@ export default function Footer() {
               height={60}
               className="opacity-90 mb-4"
             />
-            <p className="text-sm text-[#a67f2b]">Aurora Café</p>
           </div>
         </div>
 
