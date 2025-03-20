@@ -1,7 +1,9 @@
+
+import "leaflet/dist/leaflet.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Amatic_SC } from "next/font/google"; // 👈 Asegúrate de importar Amoresa correctamente
 import "./globals.css";
-
+import "leaflet/dist/leaflet.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

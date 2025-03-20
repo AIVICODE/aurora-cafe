@@ -13,7 +13,6 @@ export default function Home() {
       <main className="flex-1 relative">
         <Landing/>
         <Nosotros />  {/* Fondo personalizado aquí */}
-        <GaleriaPage />
         <ReviewsSection/>
       </main>
 

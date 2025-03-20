@@ -3,37 +3,37 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 left-0 w-full py-4 bg-black/30 backdrop-blur-[2px]  z-50 flex flex-col items-center">
+    <header className="fixed top-0 left-0 w-full py-4 bg-black/30 backdrop-blur-[2px] z-50 flex flex-col items-center">
       {/* Logo */}
-      <div className="mb-2">
+      <div className="mb-2 flex justify-center">
         <Image
           src="/logo.svg"
           alt="Aurora Logo"
-          width={100}
-          height={50}
-          className="opacity-90"
+          width={80} // mobile
+          height={40}
+          className="opacity-90 sm:w-[100px] sm:h-[50px]"
         />
       </div>
 
       {/* Navigation */}
-      <nav className="flex gap-4">
+      <nav className="flex flex-wrap justify-center items-center gap-2 max-w-[95%] text-center">
         <Link
-          href="#home"
-          className="px-6 py-2 rounded-full bg-white text-black border border-amber-200 font-medium uppercase tracking-wider text-sm hover:bg-amber-100 transition-colors"
+          href="/#home"
+          className="px-4 py-2 sm:px-6 rounded-full bg-white text-black border border-amber-200 font-medium uppercase tracking-wide text-xs sm:text-sm hover:bg-amber-100 transition-colors whitespace-nowrap"
         >
           Home
         </Link>
         <Link
-          href="#nosotros"
-          className="px-6 py-2 rounded-full bg-transparent text-white border border-white font-medium uppercase tracking-wider text-sm hover:bg-white/10 transition-colors"
+          href="/#nosotros"
+          className="px-4 py-2 sm:px-6 rounded-full bg-transparent text-white border border-white font-medium uppercase tracking-wide text-xs sm:text-sm hover:bg-white/10 transition-colors whitespace-nowrap"
         >
           Nosotros
         </Link>
         <Link
-          href="#GaleriaPage"
-          className="px-6 py-2 rounded-full bg-transparent text-white border border-white font-medium uppercase tracking-wider text-sm hover:bg-white/10 transition-colors"
+          href="/galeria"
+          className="px-4 py-2 sm:px-6 rounded-full bg-[#a67f2b] text-white border border-white font-medium uppercase tracking-wide text-xs sm:text-sm hover:bg-amber-300 transition-colors whitespace-nowrap"
         >
-          Menú
+          Pedidos
         </Link>
       </nav>
     </header>
